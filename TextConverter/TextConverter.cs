@@ -8,7 +8,7 @@
 
             Dictionary<char, int> charFrequency = new();
 
-            foreach (char c in text)
+            foreach (char c in text.Where(char.IsLetterOrDigit))
             {
                 if (charFrequency.ContainsKey(c))
                     charFrequency[c]++;

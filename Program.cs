@@ -4,14 +4,18 @@ using VkNet;
 using VkPostReader.TextParser;
 using VkNet.Model.RequestParams;
 using VkPostReader.VkPostsReader;
-
-
-
-var builder = WebApplication.CreateBuilder(args);
+using Npgsql;
+using VkPostReader;
+using Microsoft.EntityFrameworkCore;
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+
 
 
 // Add services to the container.
@@ -22,6 +26,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ITextConverter, TextConverter>();
 builder.Services.AddSingleton<IVkPostsReader, VkPostsReader>();
+
+builder.Services.AddDbContext<DatabaseContext>(options =>
+{
+    options.UseNpgsql(config["ConnectionString"]);
+});
 
 var app = builder.Build();
 

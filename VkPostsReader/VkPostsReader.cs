@@ -21,14 +21,14 @@ namespace VkPostReader.VkPostsReader
         }
 
         /// <summary>
-        /// Возвращает текстовое содержимое последних постов.
+        /// Возвращает содержимое последних постов.
         /// При этом ownerId должен быть отрицательным, если это идентификатор группы, а не личной страницы.
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postsNumber">Количество постов.</param>
-        public List<string> GetLastWallPosts(long ownerId, ulong postsNumber = 5)
+        public List<Post> GetLastWallPosts(long ownerId, ulong postsNumber = 5)
         {
-            var posts = new List<string>();
+            var posts = new List<Post>();
             var wallGetParams = new WallGetParams
             {
                 OwnerId = ownerId,
@@ -36,40 +36,20 @@ namespace VkPostReader.VkPostsReader
             };
 
             var wallPosts = api.Wall.Get(wallGetParams);
-            posts = wallPosts.WallPosts.Select(post => post.Text).ToList();
+            posts = wallPosts.WallPosts.ToList();
             return posts;
         }
 
         /// <summary>
-        /// Возвращает id последних постов.
-        /// При этом ownerId должен быть отрицательным, если это идентификатор группы, а не личной страницы.
-        /// </summary>
-        /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
-        /// <param name="postsNumber">Количество постов.</param>
-        public List<long> GetLastWallPostsId(long ownerId, ulong postsNumber = 5)
-        {
-            var posts = new List<long>();
-            var wallGetParams = new WallGetParams
-            {
-                OwnerId = ownerId,
-                Count = postsNumber
-            };
-
-            var wallPosts = api.Wall.Get(wallGetParams);
-            posts = wallPosts.WallPosts.Select(post => post.Id!.Value).ToList();
-            return posts;
-        }
-
-        /// <summary>
-        /// Возвращает текст из поста.
+        /// Возвращает пост.
         /// При этом ownerId должен быть отрицательным, если это идентификатор группы, а не личной страницы.
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postId">ID поста.</param>
-        public string GetWallPost(long ownerId, long postId)
+        public Post GetWallPost(long ownerId, long postId)
         {
             var post = api.Wall.GetById(new[] { $"{ownerId}_{postId}" })[0];
-            return post.Text;
+            return post;
         }
     }
 }

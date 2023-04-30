@@ -1,8 +1,10 @@
-﻿namespace VkPostReader.VkPostsReader
+﻿using VkNet.Model.Attachments;
+
+namespace VkPostReader.VkPostsReader
 {
     public interface IVkPostsReader
     {
-        string GetWallPost(long ownerId, long postId);
-        List<string> GetLastWallPosts(long ownerId, ulong postsNumber = 5);
+        Post GetWallPost(long ownerId, long postId);
+        List<Post> GetLastWallPosts(long ownerId, ulong postsNumber = 5);
     }
 }
