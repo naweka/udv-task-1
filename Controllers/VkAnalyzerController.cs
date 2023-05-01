@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
+using Newtonsoft.Json.Serialization;
 using VkPostReader.Models;
 using VkPostReader.TextParser;
 using VkPostReader.VkPostsReader;
@@ -17,6 +15,12 @@ namespace VkPostReader.Controllers
         private readonly ITextConverter textConverter;
         private readonly IVkPostsReader vkPostsReader;
         private readonly DatabaseContext ctx;
+
+        private readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
 
         public VkAnalyzerController(
             ILogger<VkAnalyzerController> log,
@@ -39,7 +43,10 @@ namespace VkPostReader.Controllers
                 var result = textConverter.GetCharsFrequency(
                     vkPostsReader.GetWallPost(ownerId, postId).Text);
 
-                var json = JsonConvert.SerializeObject(result);
+                var sortedDict = result.OrderBy(x => x.Key);
+                var json = JsonConvert.SerializeObject(
+                    sortedDict.ToDictionary(x => x.Key, x => x.Value),
+                    jsonSerializerSettings);
 
                 var model = new VkPostStatistics()
                 {
@@ -50,6 +57,7 @@ namespace VkPostReader.Controllers
                 };
 
                 ctx.VkStatisticRecords.Add(model);
+
                 ctx.SaveChanges();
 
                 return Ok(json);
@@ -74,7 +82,10 @@ namespace VkPostReader.Controllers
                 var result = textConverter.GetCharsFrequency(
                     posts.Select(p => p.Text).Aggregate((a,b) => a+b));
 
-                var json = JsonConvert.SerializeObject(result);
+                var sortedDict = result.OrderBy(x => x.Key);
+                var json = JsonConvert.SerializeObject(
+                    sortedDict.ToDictionary(x => x.Key, x => x.Value),
+                    jsonSerializerSettings);
 
                 var model = new VkPostStatistics()
                 {
@@ -85,6 +96,7 @@ namespace VkPostReader.Controllers
                 };
 
                 ctx.VkStatisticRecords.Add(model);
+
                 ctx.SaveChanges();
 
                 return Ok(json);
