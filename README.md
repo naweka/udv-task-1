@@ -5,4 +5,32 @@
 
 Информация о запуске подсчета и об его окончание должна записываться в лог файл на локальной файловой системе. 
 
-В качестве UI для взаимодействия с backend частью использовать Swagger
+В качестве UI для взаимодействия с backend частью использовать Swagger.
+
+# Реализация
+## API
+API состоит из двух эндпоинтов: __analyzer/getPostStats__ и __analyzer/getLastPostsStats__.
+
+Первый возволяет проанализировать конкретный пост на открытой стене личной страницы/сообщества ВКонтакте.
+
+Второй позволяет проанализировать последние N постов (максимум 100).
+
+## Анализ
+Анализ представляет собой подсчёт каждой буквы, которая хоть раз появляется в тексте.
+
+Вывод представляет собой JSON с буквами, отсортированными по алфавиту, и количеством этих букв.
+
+## База данных
+В бд PostgreSQL заносятся данные об id владельца поста, список id постов, дату анализа и сама статистика по буквам.
+
+## Запуск
+Перед запуском необходимо прописать данные в secrets.json в среде разработки:
+```json
+{
+  "VkAccessToken": "vk1.a.q197YJmdCWu4UIOgOfTNrgw9CKBgOz_aWqh_jpy9cjtT4KhrqoSY738rpNuzDudojqEszG7IuNgxuFiFTBUgZruBPViRhakyZQT4pzjbDaNteyRekgknBJbxWvpPVhMe9cCo4XTNGHhQR8CTwDBnDmi6arDW92n-UxPHo4MKPU46ZPMgZMVFp_T*******************************",
+  "ConnectionString": "Server=localhost;Port=5432;Database=testdb;User Id=admin;Password=admin;"
+}
+```
+
+Миграции: `dotnet ef migrations add InitialCreate & dotnet ef database update`
+
