@@ -2,6 +2,7 @@
 using VkNet;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
+using VkNet.Model.GroupUpdate;
 
 namespace VkPostReader.VkPostsReader
 {
@@ -20,13 +21,21 @@ namespace VkPostReader.VkPostsReader
             });
         }
 
+        public VkPostsReader(string vkToken)
+        {
+            api.Authorize(new ApiAuthParams
+            {
+                AccessToken = vkToken
+            });
+        }
+
         /// <summary>
         /// Возвращает содержимое последних постов.
         /// При этом ownerId должен быть отрицательным, если это идентификатор группы, а не личной страницы.
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postsNumber">Количество постов.</param>
-        async public Task<List<Post>> GetLastWallPostsAsync(long ownerId, ulong postsNumber = 5)
+        public async Task<List<Post>> GetLastWallPostsAsync(long ownerId, ulong postsNumber = 5)
         {
             var posts = new List<Post>();
             var wallGetParams = new WallGetParams
@@ -35,7 +44,8 @@ namespace VkPostReader.VkPostsReader
                 Count = postsNumber
             };
 
-            var wallPosts = await api.Wall.GetAsync(wallGetParams);
+            var wallPosts = await api.Wall.GetAsync(wallGetParams) ?? throw new Exception("");
+            
             posts = wallPosts.WallPosts.ToList();
             return posts;
         }
@@ -46,9 +56,10 @@ namespace VkPostReader.VkPostsReader
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postId">ID поста.</param>
-        async public Task<Post> GetWallPostAsync(long ownerId, long postId)
+        public async Task<Post> GetWallPostAsync(long ownerId, long postId)
         {
             var post = await api.Wall.GetByIdAsync(new[] { $"{ownerId}_{postId}" });
+
             return post[0];
         }
     }
