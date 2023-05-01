@@ -26,7 +26,7 @@ namespace VkPostReader.VkPostsReader
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postsNumber">Количество постов.</param>
-        public List<Post> GetLastWallPosts(long ownerId, ulong postsNumber = 5)
+        async public Task<List<Post>> GetLastWallPostsAsync(long ownerId, ulong postsNumber = 5)
         {
             var posts = new List<Post>();
             var wallGetParams = new WallGetParams
@@ -35,7 +35,7 @@ namespace VkPostReader.VkPostsReader
                 Count = postsNumber
             };
 
-            var wallPosts = api.Wall.Get(wallGetParams);
+            var wallPosts = await api.Wall.GetAsync(wallGetParams);
             posts = wallPosts.WallPosts.ToList();
             return posts;
         }
@@ -46,10 +46,10 @@ namespace VkPostReader.VkPostsReader
         /// </summary>
         /// <param name="ownerId">ID владельца стены: группа или личная страница.</param>
         /// <param name="postId">ID поста.</param>
-        public Post GetWallPost(long ownerId, long postId)
+        async public Task<Post> GetWallPostAsync(long ownerId, long postId)
         {
-            var post = api.Wall.GetById(new[] { $"{ownerId}_{postId}" })[0];
-            return post;
+            var post = await api.Wall.GetByIdAsync(new[] { $"{ownerId}_{postId}" });
+            return post[0];
         }
     }
 }

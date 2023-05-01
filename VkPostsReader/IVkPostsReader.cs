@@ -4,7 +4,7 @@ namespace VkPostReader.VkPostsReader
 {
     public interface IVkPostsReader
     {
-        Post GetWallPost(long ownerId, long postId);
-        List<Post> GetLastWallPosts(long ownerId, ulong postsNumber = 5);
+        Task<Post> GetWallPostAsync(long ownerId, long postId);
+        Task<List<Post>> GetLastWallPostsAsync(long ownerId, ulong postsNumber = 5);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using VkNet.Model.Attachments;
 using VkPostReader.Models;
 using VkPostReader.TextParser;
 using VkPostReader.VkPostsReader;
@@ -16,9 +17,10 @@ namespace VkPostReader.Controllers
         private readonly IVkPostsReader vkPostsReader;
         private readonly DatabaseContext ctx;
 
-        private readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+        private readonly JsonSerializerSettings jsonSerializerSettings =
+            new JsonSerializerSettings
         {
-            Formatting = Formatting.Indented,
+            Formatting = Formatting.None,
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
 
@@ -36,12 +38,15 @@ namespace VkPostReader.Controllers
 
 
         [HttpGet("getPostStats")]
-        public IActionResult GetPostCharsFrequency(long ownerId, long postId)
+        async public Task<IActionResult> GetPostCharsFrequency(long ownerId, long postId)
         {
             try
             {
-                var result = textConverter.GetCharsFrequency(
-                    vkPostsReader.GetWallPost(ownerId, postId).Text);
+                logger.LogInformation(
+                    $"Analyzing post: https://vk.com/wall{ownerId}_{postId}");
+
+                var post = await vkPostsReader.GetWallPostAsync(ownerId, postId);
+                var result = textConverter.GetCharsFrequency(post.Text);
 
                 var sortedDict = result.OrderBy(x => x.Key);
                 var json = JsonConvert.SerializeObject(
@@ -57,8 +62,9 @@ namespace VkPostReader.Controllers
                 };
 
                 ctx.VkStatisticRecords.Add(model);
+                await ctx.SaveChangesAsync();
 
-                ctx.SaveChanges();
+                logger.LogInformation($"Analyzing complete");
 
                 return Ok(json);
             }
@@ -70,14 +76,19 @@ namespace VkPostReader.Controllers
         }
 
         [HttpGet("getLastPostsStats")]
-        public IActionResult GetLastPostsCharsFrequency(long ownerId, ulong postsNumber = 5)
+        async public Task<IActionResult> GetLastPostsCharsFrequency(
+            long ownerId, 
+            ulong postsNumber = 5)
         {
             if (postsNumber < 1 || postsNumber > 100)
                 return StatusCode(400, "Неправильный формат данных.");
 
             try
             {
-                var posts = vkPostsReader.GetLastWallPosts(ownerId, postsNumber);
+                logger.LogInformation(
+                    $"Analyzing last {postsNumber} posts: https://vk.com/wall{ownerId}");
+
+                var posts = await vkPostsReader.GetLastWallPostsAsync(ownerId, postsNumber);
 
                 var result = textConverter.GetCharsFrequency(
                     posts.Select(p => p.Text).Aggregate((a,b) => a+b));
@@ -96,8 +107,9 @@ namespace VkPostReader.Controllers
                 };
 
                 ctx.VkStatisticRecords.Add(model);
+                await ctx.SaveChangesAsync();
 
-                ctx.SaveChanges();
+                logger.LogInformation($"Analyzing complete");
 
                 return Ok(json);
             }

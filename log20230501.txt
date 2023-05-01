@@ -1,0 +1,104 @@
+2023-05-01 11:02:49.414 +05:00 [INF] Now listening on: https://localhost:7243
+2023-05-01 11:02:49.467 +05:00 [INF] Now listening on: http://localhost:5233
+2023-05-01 11:02:49.473 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-01 11:02:49.474 +05:00 [INF] Hosting environment: Development
+2023-05-01 11:02:49.476 +05:00 [INF] Content root path: C:\Users\a\Desktop\USS23\VkPostReader
+2023-05-01 11:02:50.488 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/index.html - -
+2023-05-01 11:02:50.865 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/index.html - - - 200 - text/html;charset=utf-8 380.2243ms
+2023-05-01 11:02:50.963 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - -
+2023-05-01 11:02:50.978 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 14.1656ms
+2023-05-01 11:02:50.999 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_vs/browserLink - -
+2023-05-01 11:02:51.076 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 77.0854ms
+2023-05-01 11:02:51.204 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - -
+2023-05-01 11:02:51.361 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 156.9293ms
+2023-05-01 11:02:56.306 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=15 - -
+2023-05-01 11:02:56.320 +05:00 [INF] Executing endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:02:56.349 +05:00 [INF] Route matched with {action = "GetLastPostsCharsFrequency", controller = "VkAnalyzer"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetLastPostsCharsFrequency(Int64, UInt64) on controller VkPostReader.Controllers.VkAnalyzerController (VkPostReader).
+2023-05-01 11:02:56.596 +05:00 [INF] Analyzing last 15 posts: https://vk.com/wall-149279263...
+2023-05-01 11:02:58.042 +05:00 [INF] Executed DbCommand (37ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int64), @p2='?' (DbType = Object), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "VkStatisticRecords" ("DateTime", "OwnerID", "PostsID", "StatisticString")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2023-05-01 11:02:58.080 +05:00 [INF] Analyzing complete
+2023-05-01 11:02:58.088 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2023-05-01 11:02:58.094 +05:00 [INF] Executed action VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader) in 1739.0788ms
+2023-05-01 11:02:58.097 +05:00 [INF] Executed endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:02:58.113 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=15 - - - 200 - text/plain;+charset=utf-8 1806.4530ms
+2023-05-01 11:19:22.424 +05:00 [INF] Now listening on: https://localhost:7243
+2023-05-01 11:19:22.652 +05:00 [INF] Now listening on: http://localhost:5233
+2023-05-01 11:19:22.660 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-01 11:19:22.662 +05:00 [INF] Hosting environment: Development
+2023-05-01 11:19:22.663 +05:00 [INF] Content root path: C:\Users\a\Desktop\USS23\VkPostReader
+2023-05-01 11:19:23.167 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/index.html - -
+2023-05-01 11:19:23.483 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/index.html - - - 200 - text/html;charset=utf-8 318.8846ms
+2023-05-01 11:19:23.645 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - -
+2023-05-01 11:19:23.645 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_vs/browserLink - -
+2023-05-01 11:19:23.669 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 24.3587ms
+2023-05-01 11:19:23.744 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 98.6596ms
+2023-05-01 11:19:23.862 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - -
+2023-05-01 11:19:24.045 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 182.9710ms
+2023-05-01 11:19:30.780 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=5 - -
+2023-05-01 11:19:30.792 +05:00 [INF] Executing endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:19:30.836 +05:00 [INF] Route matched with {action = "GetLastPostsCharsFrequency", controller = "VkAnalyzer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLastPostsCharsFrequency(Int64, UInt64) on controller VkPostReader.Controllers.VkAnalyzerController (VkPostReader).
+2023-05-01 11:19:31.118 +05:00 [INF] Analyzing last 5 posts: https://vk.com/wall-149279263
+2023-05-01 11:19:32.552 +05:00 [INF] Executed DbCommand (41ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int64), @p2='?' (DbType = Object), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "VkStatisticRecords" ("DateTime", "OwnerID", "PostsID", "StatisticString")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2023-05-01 11:19:32.593 +05:00 [INF] Analyzing complete
+2023-05-01 11:19:32.603 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2023-05-01 11:19:32.609 +05:00 [INF] Executed action VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader) in 1765.7128ms
+2023-05-01 11:19:32.611 +05:00 [INF] Executed endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:19:32.622 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=5 - - - 200 - text/plain;+charset=utf-8 1842.2494ms
+2023-05-01 11:19:38.542 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=100 - -
+2023-05-01 11:19:38.550 +05:00 [INF] Executing endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:19:38.557 +05:00 [INF] Route matched with {action = "GetLastPostsCharsFrequency", controller = "VkAnalyzer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLastPostsCharsFrequency(Int64, UInt64) on controller VkPostReader.Controllers.VkAnalyzerController (VkPostReader).
+2023-05-01 11:19:38.571 +05:00 [INF] Analyzing last 100 posts: https://vk.com/wall-149279263
+2023-05-01 11:19:39.389 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int64), @p2='?' (DbType = Object), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "VkStatisticRecords" ("DateTime", "OwnerID", "PostsID", "StatisticString")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2023-05-01 11:19:39.402 +05:00 [INF] Analyzing complete
+2023-05-01 11:19:39.405 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2023-05-01 11:19:39.408 +05:00 [INF] Executed action VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader) in 839.6324ms
+2023-05-01 11:19:39.411 +05:00 [INF] Executed endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:19:39.415 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=100 - - - 200 - text/plain;+charset=utf-8 872.0923ms
+2023-05-01 11:25:22.917 +05:00 [INF] Now listening on: https://localhost:7243
+2023-05-01 11:25:22.989 +05:00 [INF] Now listening on: http://localhost:5233
+2023-05-01 11:25:22.994 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-01 11:25:22.995 +05:00 [INF] Hosting environment: Development
+2023-05-01 11:25:22.997 +05:00 [INF] Content root path: C:\Users\a\Desktop\USS23\VkPostReader
+2023-05-01 11:25:24.035 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/index.html - -
+2023-05-01 11:25:24.338 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/index.html - - - 200 - text/html;charset=utf-8 310.0740ms
+2023-05-01 11:25:24.436 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - -
+2023-05-01 11:25:24.448 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 11.7960ms
+2023-05-01 11:25:24.462 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/_vs/browserLink - -
+2023-05-01 11:25:24.540 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 78.0808ms
+2023-05-01 11:25:24.662 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - -
+2023-05-01 11:25:24.833 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 171.1354ms
+2023-05-01 11:25:37.081 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=50 - -
+2023-05-01 11:25:37.095 +05:00 [INF] Executing endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:25:37.132 +05:00 [INF] Route matched with {action = "GetLastPostsCharsFrequency", controller = "VkAnalyzer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLastPostsCharsFrequency(Int64, UInt64) on controller VkPostReader.Controllers.VkAnalyzerController (VkPostReader).
+2023-05-01 11:25:37.383 +05:00 [INF] Analyzing last 50 posts: https://vk.com/wall-149279263
+2023-05-01 11:25:39.042 +05:00 [INF] Executed DbCommand (42ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int64), @p2='?' (DbType = Object), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "VkStatisticRecords" ("DateTime", "OwnerID", "PostsID", "StatisticString")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2023-05-01 11:25:39.086 +05:00 [INF] Analyzing complete
+2023-05-01 11:25:39.096 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2023-05-01 11:25:39.104 +05:00 [INF] Executed action VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader) in 1964.8031ms
+2023-05-01 11:25:39.106 +05:00 [INF] Executed endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:25:39.117 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=-149279263&postsNumber=50 - - - 200 - text/plain;+charset=utf-8 2036.3692ms
+2023-05-01 11:25:47.636 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=206433218&postsNumber=50 - -
+2023-05-01 11:25:47.647 +05:00 [INF] Executing endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:25:47.651 +05:00 [INF] Route matched with {action = "GetLastPostsCharsFrequency", controller = "VkAnalyzer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLastPostsCharsFrequency(Int64, UInt64) on controller VkPostReader.Controllers.VkAnalyzerController (VkPostReader).
+2023-05-01 11:25:47.661 +05:00 [INF] Analyzing last 50 posts: https://vk.com/wall206433218
+2023-05-01 11:25:48.817 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int64), @p2='?' (DbType = Object), @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "VkStatisticRecords" ("DateTime", "OwnerID", "PostsID", "StatisticString")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "Id";
+2023-05-01 11:25:48.822 +05:00 [INF] Analyzing complete
+2023-05-01 11:25:48.828 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2023-05-01 11:25:48.829 +05:00 [INF] Executed action VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader) in 1171.3529ms
+2023-05-01 11:25:48.831 +05:00 [INF] Executed endpoint 'VkPostReader.Controllers.VkAnalyzerController.GetLastPostsCharsFrequency (VkPostReader)'
+2023-05-01 11:25:48.833 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7243/analyzer/getLastPostsStats?ownerId=206433218&postsNumber=50 - - - 200 - text/plain;+charset=utf-8 1196.8777ms
