@@ -34,3 +34,6 @@ API состоит из двух эндпоинтов: __analyzer/getPostStats__
 
 Миграции: `dotnet ef migrations add InitialCreate & dotnet ef database update`
 
+
+
+Запуск PostgreSQL: `docker run --name postgres-db -p 5432:5432 -e POSTGRES_DB=testdb -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -d postgres:15.2`
